@@ -218,7 +218,16 @@ body {
     outline-offset: 4px;
 }
 
-.seal-ampersand { font-size: 13px; }
+/* your logo, sitting on top of the seal. Change the size here (percentage of the seal). */
+.seal-logo {
+    width: 64%;
+    height: 64%;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    filter: drop-shadow(0 1px 1px rgba(80, 30, 40, .4));
+}
 
 /* ---------- Instruction / footer ---------- */
 

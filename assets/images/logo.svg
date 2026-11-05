@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#FFF0E9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- DUMMY LOGO: replace this file (images/logo.svg) with your own. PNG/JPG/WebP also work; just update the src in index.html -->
+  <circle cx="38" cy="54" r="22"/>
+  <circle cx="62" cy="54" r="22"/>
+  <path d="M50 10 L55 18 L50 26 L45 18 Z" fill="#FFF0E9" stroke-width="1.5"/>
+</svg>
