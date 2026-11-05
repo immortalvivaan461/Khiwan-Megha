@@ -74,7 +74,8 @@
 /* ---------- hero ---------- */
 .final-page > .fp-hero { position: relative; isolation: isolate; overflow: hidden; min-height: min(86vh, 680px); justify-content: center; padding-top: 72px; padding-bottom: 84px; color: var(--ivory); }
 .fp-hero::before { content: ""; position: absolute; inset: -6% 0; z-index: -2; translate: 0 var(--py, 0px);
-    background: url("../images/hero.jpg") center / cover, linear-gradient(160deg, #B77C83, #7F9275 60%, #59413D);
+    background: url("../assets/images/hero1.png") center / cover, linear-gradient(160deg, #B77C83, #7F9275 60%, #59413D);
+    background-attachment: fixed;
     animation: kenburns 22s ease-in-out infinite alternate; }
 .fp-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(60,35,32,.3), rgba(60,35,32,.68)); }
 @keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.1); } }
@@ -99,7 +100,7 @@
 .fp-lotus { color: var(--gold); margin-bottom: 18px; animation: glow 4s ease-in-out infinite; }
 @keyframes glow { 50% { filter: drop-shadow(0 0 6px rgba(201,164,106,.9)); } }
 .fp-small { font-size: 16px; opacity: .85; }
-.fp-elder { margin: 2px 0; font-size: 22px; font-weight: 600; }
+.fp-elder { margin: 2px 0; font-size: 18px; font-weight: 600; }
 .fp-person { margin: 22px 0 2px; font-family: 'Great Vibes', cursive; font-weight: 400; font-size: clamp(54px, 13vw, 72px); line-height: 1.1; color: var(--rose); }
 .fp-with { margin-top: 14px; font-family: 'Great Vibes', cursive; font-size: 26px; color: var(--gold); }
 
@@ -109,14 +110,15 @@
 .fp-venue-photo, .fp-arch-photo { position: relative; overflow: hidden; }
 .fp-venue-photo { aspect-ratio: 4 / 3; border-radius: 14px; box-shadow: 0 16px 36px rgba(89,65,61,.25); }
 .fp-venue-photo::before, .fp-arch-photo::before { content: ""; position: absolute; inset: 0; transition: transform 1.4s var(--ease); }
-.fp-venue-photo::before { background: url("../images/venue.jpg") center / cover, linear-gradient(135deg, #C9A46A, #B77C83); }
+.fp-venue-photo::before { background: url("../assets/images/destination.jpg") center / cover, linear-gradient(135deg, #C9A46A, #B77C83); }
 .fp-venue-photo::after { content: ""; position: absolute; inset: 10px; border: 1px solid rgba(255,249,243,.75); border-radius: 8px; }
 .fp-venue-photo:hover::before { transform: scale(1.07); }
 .fp-venue-name { margin: 4px 0 10px; font-weight: 600; font-size: clamp(30px, 5vw, 42px); line-height: 1.1; letter-spacing: 2px; text-transform: uppercase; }
 .fp-venue-date { margin-top: 6px; opacity: .8; }
 
 /* ---------- scratch ---------- */
-.final-page > .fp-scratch { position: relative; }
+/* blush at both ends so it flows from the invitation card above and into the venue below */
+.final-page > .fp-scratch { position: relative; background: linear-gradient(180deg, var(--blush), var(--ivory) 50%, var(--blush)); }
 .fp-scratch .fp-quote { margin-bottom: 10px; }
 .fp-scratch-card { position: relative; width: min(340px, 86vw); height: 220px; margin: 24px 0 20px; border: 1px solid var(--gold); border-radius: 14px; overflow: hidden; background: var(--blush); box-shadow: 0 16px 34px rgba(183,124,131,.25); }
 .fp-scratch-card:not(.is-done) { animation: pulse 2.8s ease-in-out infinite; }
@@ -128,7 +130,16 @@
 @keyframes pop { from { transform: scale(.8); opacity: 0; } to { transform: none; opacity: 1; } }
 .fp-scratch-card canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: grab; transition: opacity .9s ease; }
 .fp-scratch-card.is-done canvas { opacity: 0; pointer-events: none; }
-.fp-scratch.is-done .fp-pill { visibility: hidden; }
+.fp-scratch.is-done #revealDate { display: none; }
+
+/* add to calendar: shown only after the date is revealed */
+.fp-cal { display: none; }
+.fp-scratch.is-done .fp-cal { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.fp-cal .fp-cal-btn { margin-top: 0; }
+.fp-cal-options { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.fp-cal-options[hidden] { display: none; }
+.fp-cal-options .fp-pill { display: inline-block; text-decoration: none; background: var(--ivory); }
+.fp-cal-options .fp-pill:hover { background: var(--rose); color: var(--ivory); }
 .fp-spark { position: absolute; z-index: 3; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 10px 2px rgba(201,164,106,.8); pointer-events: none; }
 
 /* ---------- itinerary ---------- */

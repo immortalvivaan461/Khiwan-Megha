@@ -88,6 +88,65 @@
     }));
     document.getElementById("revealDate").addEventListener("click", reveal);
 
+    /* ---------- Add to calendar ---------- */
+    // Edit these details. Leave startTime empty for an all-day event, or set times like "10:00" / "23:00" (India time).
+    const WEDDING = {
+        title: "Khiwan & Megha's Wedding",
+        date: "2026-11-22",
+        startTime: "",
+        endTime: "",
+        location: "The Grand Barso, Bharatpur, Rajasthan",
+        description: "Join us to celebrate the wedding of Khiwan & Megha at The Grand Barso, Bharatpur, Rajasthan. " +
+            "Celebrations begin on 21 November with the Mehendi (11:00 AM) and the Ring Ceremony & Sangeet (7:00 PM)."
+    };
+
+    (function setupCalendar() {
+        const btn = document.getElementById("calBtn");
+        const options = document.getElementById("calOptions");
+        const googleLink = document.getElementById("calGoogle");
+        const icsLink = document.getElementById("calIcs");
+        const compact = d => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+
+        let start, end, allDay = !WEDDING.startTime;
+        if (allDay) {
+            const [y, m, d] = WEDDING.date.split("-").map(Number);
+            const day = x => new Date(Date.UTC(y, m - 1, d + x)).toISOString().slice(0, 10).replace(/-/g, "");
+            start = day(0); end = day(1);
+        } else {
+            const s = new Date(`${WEDDING.date}T${WEDDING.startTime}:00+05:30`);
+            const e = WEDDING.endTime ? new Date(`${WEDDING.date}T${WEDDING.endTime}:00+05:30`) : new Date(s.getTime() + 3 * 36e5);
+            start = compact(s); end = compact(e);
+        }
+
+        googleLink.href = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+            "&text=" + encodeURIComponent(WEDDING.title) +
+            "&dates=" + start + "/" + end +
+            "&details=" + encodeURIComponent(WEDDING.description) +
+            "&location=" + encodeURIComponent(WEDDING.location);
+
+        const esc = t => t.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
+        const ics = [
+            "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Khiwan and Megha//Wedding Invitation//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
+            "BEGIN:VEVENT",
+            "UID:khiwan-megha-wedding-" + WEDDING.date + "@wedding-invitation",
+            "DTSTAMP:" + compact(new Date()),
+            allDay ? "DTSTART;VALUE=DATE:" + start : "DTSTART:" + start,
+            allDay ? "DTEND;VALUE=DATE:" + end : "DTEND:" + end,
+            "SUMMARY:" + esc(WEDDING.title),
+            "LOCATION:" + esc(WEDDING.location),
+            "DESCRIPTION:" + esc(WEDDING.description),
+            "BEGIN:VALARM", "TRIGGER:-P1D", "ACTION:DISPLAY", "DESCRIPTION:" + esc(WEDDING.title), "END:VALARM",
+            "END:VEVENT", "END:VCALENDAR"
+        ].join("\r\n");
+        icsLink.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+
+        btn.addEventListener("click", () => {
+            const open = options.hidden;
+            options.hidden = !open;
+            btn.setAttribute("aria-expanded", open);
+        });
+    })();
+
     /* ---------- RSVP ---------- */
     // Set your WhatsApp number (country code, digits only, e.g. "919876543210") to receive replies.
     const WHATSAPP_NUMBER = "";

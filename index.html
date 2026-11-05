@@ -165,28 +165,13 @@
                 <div class="fp-divider"><svg width="22" height="15"><use href="#lotus"/></svg></div>
                 <p class="fp-quote">With immense joy, we invite you to celebrate the wedding of our beloved children.</p>
                 <h2 class="fp-person">Khiwan</h2>
-                <p class="fp-small">S/o Anupama &amp; Rakesh Kumar Mangla</p>
+                <p class="fp-small">S/o Smt. Anupama &amp; Shri. Rakesh Kumar Mangla</p>
                 <p class="fp-with">with</p>
                 <h2 class="fp-person">Megha</h2>
                 <p class="fp-small">D/o Late Smt. Anita &amp; Dr. Jagdish Prashad Jindal</p>
                 <div class="fp-divider"><svg width="22" height="15"><use href="#lotus"/></svg></div>
                 <p class="fp-quote">Together with their families, they invite you to bless their new beginning.</p>
             </article>
-        </section>
-
-        <!-- Venue (photo: images/venue.jpg) -->
-        <section class="fp-venue" id="venue">
-            <div class="fp-venue-grid">
-                <div class="fp-venue-photo" role="img" aria-label="The Grand Barso at dusk"></div>
-                <div>
-                    <p class="fp-script">The Wedding Venue</p>
-                    <h2 class="fp-venue-name">The Grand Barso</h2>
-                    <p>Bharatpur, Rajasthan</p>
-                    <p class="fp-venue-date">22 November 2026</p>
-                    <a class="fp-button" target="_blank" rel="noopener"
-                       href="https://www.google.com/maps/search/?api=1&query=The+Grand+Barso+Bharatpur+Rajasthan">View on map</a>
-                </div>
-            </div>
         </section>
 
         <!-- Scratch to reveal -->
@@ -203,6 +188,30 @@
                 <canvas id="scratchCanvas" aria-hidden="true"></canvas>
             </div>
             <button class="fp-pill" id="revealDate" type="button">Tap here to reveal the date</button>
+
+            <!-- appears once the date has been revealed -->
+            <div class="fp-cal">
+                <button class="fp-button fp-cal-btn" id="calBtn" type="button" aria-expanded="false" aria-controls="calOptions">Add to Calendar</button>
+                <div class="fp-cal-options" id="calOptions" hidden>
+                    <a class="fp-pill" id="calGoogle" target="_blank" rel="noopener">Google Calendar</a>
+                    <a class="fp-pill" id="calIcs" download="Khiwan-and-Megha-Wedding.ics">Apple / Outlook</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Venue (photo: images/venue.jpg) -->
+        <section class="fp-venue" id="venue">
+            <div class="fp-venue-grid">
+                <div class="fp-venue-photo" role="img" aria-label="The Grand Barso at dusk"></div>
+                <div>
+                    <p class="fp-script">The Wedding Venue</p>
+                    <h2 class="fp-venue-name">The Grand Barso</h2>
+                    <p>Bharatpur, Rajasthan</p>
+                    <p class="fp-venue-date">22 November 2026</p>
+                    <a class="fp-button" target="_blank" rel="noopener"
+                       href="https://www.google.com/maps/search/?api=1&query=The+Grand+Barso+Bharatpur+Rajasthan">View on map</a>
+                </div>
+            </div>
         </section>
 
         <!-- Itinerary -->
