@@ -1,0 +1,296 @@
+:root {
+    --sage: #A7B49A;
+    --sage-dark: #7F9275;
+    --ivory: #FFF9F3;
+    --blush: #F4DDE0;
+    --rose: #B77C83;
+    --gold: #C9A46A;
+    --brown: #59413D;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { background: var(--sage); }
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    overflow: hidden;
+}
+
+.invitation-screen {
+    min-height: 100vh;
+    min-height: 100dvh;
+    width: 100%;
+    background-color: var(--sage);
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,.12) 1px, transparent 2px),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,.12) 1px, transparent 2px),
+        radial-gradient(ellipse at 50% 45%, rgba(255,249,243,.22), transparent 65%);
+    background-size: 35px 35px, 35px 35px, 100% 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.invitation-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    padding: 30px 15px;
+}
+
+.intro-text {
+    color: var(--ivory);
+    font-size: 12px;
+    letter-spacing: 5px;
+    margin-bottom: 35px;
+}
+
+/* ---------- Envelope ---------- */
+
+.envelope-wrapper {
+    position: relative;
+    width: min(380px, 82vw);
+    aspect-ratio: 380 / 245;
+    perspective: 1200px;
+    cursor: pointer;
+    filter: drop-shadow(0 20px 25px rgba(66, 55, 47, .22));
+    -webkit-tap-highlight-color: transparent;
+}
+
+.envelope-back,
+.envelope-pocket,
+.envelope-flap,
+.invitation-card {
+    will-change: transform, opacity;
+}
+
+.envelope-back {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, #F3E3DE, var(--ivory));
+    border: 1px solid rgba(201, 164, 106, .6);
+    z-index: 1;
+}
+
+/* Front of the envelope: open at the top in a V so the card can slide out */
+.envelope-pocket {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, #FFFDF9, var(--blush));
+    clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+    z-index: 3;
+}
+
+/* Soft fold lines running from the bottom corners to the centre */
+.envelope-pocket::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to top right, transparent 49.6%, rgba(183,124,131,.28) 50%, transparent 50.4%) left bottom / 50% 55% no-repeat,
+        linear-gradient(to top left,  transparent 49.6%, rgba(183,124,131,.28) 50%, transparent 50.4%) right bottom / 50% 55% no-repeat;
+}
+
+/* Flap: a real two-sided 3D object (outside + inside) */
+.envelope-flap {
+    position: absolute;
+    inset: 0;
+    transform-origin: top center;
+    transform-style: preserve-3d;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.envelope-flap::before,
+.envelope-flap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* outside face */
+.envelope-flap::before {
+    background: linear-gradient(135deg, #F8ECE8, #E9CBCD);
+    clip-path: polygon(0 0, 100% 0, 50% 58%);
+}
+
+/* inside face: mirrored triangle, pre-flipped so it reads correctly once open */
+.envelope-flap::after {
+    background: linear-gradient(315deg, #F3E1DE, #DDB6BA);
+    clip-path: polygon(0 100%, 100% 100%, 50% 42%);
+    transform: rotateX(180deg);
+}
+
+/* ---------- Invitation card ---------- */
+
+.invitation-card {
+    position: absolute;
+    width: 88%;
+    height: 88%;
+    top: 6%;
+    left: 6%;
+    background: var(--ivory);
+    border: 1px solid var(--gold);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 0 0 rgba(66, 55, 47, 0);
+}
+
+.invitation-card::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(201, 164, 106, .4);
+    pointer-events: none;
+}
+
+.card-small {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--brown);
+}
+
+.invitation-card h2 {
+    font-family: 'Great Vibes', cursive;
+    font-weight: 400;
+    font-size: clamp(32px, 7vw, 48px);
+    color: var(--rose);
+    margin: 8px 0;
+}
+
+.invitation-card h2 span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+}
+
+.card-date {
+    font-size: 13px;
+    color: var(--brown);
+    letter-spacing: 2px;
+}
+
+/* ---------- Wax seal ---------- */
+
+.wax-seal {
+    position: absolute;
+    width: 76px;
+    height: 76px;
+    left: 50%;
+    top: 56%;
+    padding: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #D69BA1, #A95F6D 75%);
+    border: 4px solid #C88791;
+    box-shadow:
+        inset 0 0 0 2px rgba(255,255,255,.25),
+        inset 0 -4px 8px rgba(80,30,40,.25),
+        0 5px 12px rgba(80,40,40,.3);
+    color: #FFF0E9;
+    z-index: 7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    cursor: pointer;
+    font-family: 'Great Vibes', cursive;
+    font-size: 20px;
+    will-change: transform, opacity;
+}
+
+.wax-seal:focus-visible {
+    outline: 2px solid var(--ivory);
+    outline-offset: 4px;
+}
+
+.seal-ampersand { font-size: 13px; }
+
+/* ---------- Instruction / footer ---------- */
+
+.instruction {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+    color: var(--ivory);
+}
+
+.instruction p {
+    font-size: 15px;
+    letter-spacing: 2px;
+    margin: 0;
+    font-style: italic;
+}
+
+.instruction-line {
+    width: 30px;
+    height: 1px;
+    background: var(--ivory);
+    opacity: .7;
+}
+
+.footer-text {
+    margin-top: 65px;
+    color: var(--ivory);
+    font-size: 10px;
+    letter-spacing: 4px;
+}
+
+/* ---------- Decorations ---------- */
+
+.floral-decoration {
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    opacity: .35;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, rgba(255,249,243,.35), transparent 70%);
+}
+.floral-top-left { top: -100px; left: -100px; }
+.floral-bottom-right { bottom: -100px; right: -100px; }
+
+/* Petals + sparkles released when the envelope opens (created in JS) */
+.petal {
+    position: fixed;
+    z-index: 10;
+    pointer-events: none;
+    width: 10px;
+    height: 14px;
+    border-radius: 100% 0 100% 0;
+    opacity: 0;
+}
+
+.sparkle {
+    position: fixed;
+    z-index: 10;
+    pointer-events: none;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 8px 2px rgba(201,164,106,.7);
+    opacity: 0;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 576px) {
+    .wax-seal { width: 65px; height: 65px; font-size: 17px; }
+    .intro-text { margin-bottom: 30px; }
+    .footer-text { margin-top: 50px; }
+}

@@ -1,0 +1,40 @@
+/* ================= SILK CURTAINS ================= */
+.curtains {
+    position: fixed; inset: 0; z-index: 50; overflow: hidden;
+    visibility: hidden; pointer-events: none;
+}
+
+.curtain {
+    /* each curtain extends past the screen edge by --over, so its swaying hem never uncovers the background */
+    --over: 8vh;
+    position: absolute; top: 0; bottom: 0; width: calc(50.4% + var(--over));
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    /* soft, evenly pleated blush silk: a pale highlight ridge between wide, gently shaded folds */
+    background:
+        linear-gradient(180deg, rgba(89,65,61,.10), transparent 16%, transparent 84%, rgba(89,65,61,.12)),
+        repeating-linear-gradient(90deg,
+            #E8CFCF 0, #ECD6D4 12px, #F6E8E4 22px, #FCF3EF 27px,
+            #F4E4E1 33px, #EBD3D2 44px, #E4C9C9 52px);
+}
+/* inner shading on the fabric, plus a soft shadow cast onto whatever is revealed behind */
+.curtain--left  { left: calc(-1 * var(--over));  transform-origin: 0 0;    box-shadow: inset -22px 0 30px rgba(89,65,61,.14),  16px 0 30px rgba(89,65,61,.20); }
+.curtain--right { right: calc(-1 * var(--over)); transform-origin: 100% 0; box-shadow: inset 22px 0 30px rgba(89,65,61,.14), -16px 0 30px rgba(89,65,61,.20); }
+
+/* beaded ivory edge where the two curtains meet.
+   --inv (set from JS) cancels the curtain's horizontal squash so the beads stay perfectly round */
+.curtain::before {
+    content: ""; position: absolute; top: 0; bottom: 0; width: 16px; z-index: 1;
+    background: radial-gradient(circle at 50% 50%, #FFF9F3 0 3.2px, rgba(255,249,243,0) 3.8px) 0 0 / 16px 22px repeat-y;
+    filter: drop-shadow(0 0 1px rgba(89,65,61,.35));
+    transform: scaleX(var(--inv, 1));
+}
+.curtain--left::before  { right: 0; transform-origin: 100% 50%; }
+.curtain--right::before { left: 0;  transform-origin: 0 50%; }
+
+.curtain-glow {
+    position: fixed; inset: 0; z-index: 45; opacity: 0; visibility: hidden; pointer-events: none;
+    background:
+        radial-gradient(ellipse 30% 75% at 50% 50%, rgba(255,243,214,.95), rgba(255,243,214,0)),
+        radial-gradient(ellipse at center, #FFF3D6, #F6DFA8 70%);
+}
