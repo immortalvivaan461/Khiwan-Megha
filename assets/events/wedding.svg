@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Wedding – mandap, garlands and kalash</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF9F3"/><stop offset="1" stop-color="#F4DDE0"/></linearGradient>
+    <linearGradient id="dome" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6D9DC"/><stop offset="1" stop-color="#EBC3C8"/></linearGradient>
+    <linearGradient id="pot" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E6C98B"/><stop offset=".45" stop-color="#F6E7BD"/><stop offset="1" stop-color="#C9A46A"/></linearGradient>
+    <path id="leaf" d="M0 0C8-13 24-13 34 0 24 13 8 13 0 0Z"/>
+    <ellipse id="petal" rx="4" ry="7.500" fill="#EBC3C8" stroke="#B77C83" stroke-width=".8"/>
+  </defs>
+
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <circle cx="200" cy="290" r="160" stroke="#C9A46A" stroke-width="1.6" stroke-dasharray="0.1 9" opacity=".9"/>
+  <circle cx="200" cy="290" r="136" fill="#FFFDF9" opacity=".75"/>
+
+  <!-- floor / steps -->
+  <rect x="64" y="410" width="272" height="12" rx="2" fill="#F6E7BD" stroke="#C9A46A" stroke-width="2.4"/>
+  <rect x="80" y="398" width="240" height="12" rx="2" fill="#FFF3D6" stroke="#C9A46A" stroke-width="2.4"/>
+
+  <!-- pillars -->
+  <g stroke="#C9A46A" stroke-width="2.6" fill="#FFF9F3">
+    <rect x="102" y="214" width="20" height="184"/>
+    <rect x="278" y="214" width="20" height="184"/>
+    <rect x="95" y="206" width="34" height="10" rx="2" fill="#F6E7BD"/>
+    <rect x="271" y="206" width="34" height="10" rx="2" fill="#F6E7BD"/>
+    <rect x="96" y="386" width="32" height="12" rx="2" fill="#F6E7BD"/>
+    <rect x="272" y="386" width="32" height="12" rx="2" fill="#F6E7BD"/>
+  </g>
+  <g stroke="#E3C27C" stroke-width="1.4">
+    <path d="M112 222V380"/><path d="M288 222V380"/>
+  </g>
+
+  <!-- canopy -->
+  <path d="M84 206C84 150 140 118 200 108C260 118 316 150 316 206Z" fill="url(#dome)" stroke="#C9A46A" stroke-width="3"/>
+  <g stroke="#B77C83" stroke-width="1.4" opacity=".85">
+    <path d="M200 108C178 132 160 168 150 206"/><path d="M200 108C222 132 240 168 250 206"/>
+    <path d="M200 108C190 140 186 172 184 206"/><path d="M200 108C210 140 214 172 216 206"/>
+  </g>
+  <path d="M84 206Q97.500 228 111 206T138 206T165 206T192 206T219 206T246 206T273 206T300 206H316" stroke="#C9A46A" stroke-width="2.6" fill="#FFF3D6"/>
+  <path d="M200 108V86" stroke="#C9A46A" stroke-width="3"/>
+  <circle cx="200" cy="80" r="6" fill="#C9A46A"/>
+  <path d="M190 112H210" stroke="#C9A46A" stroke-width="3"/>
+
+  <!-- marigold garlands -->
+  <g fill="none" stroke-width="9">
+    <path d="M122 224C158 284 242 284 278 224" stroke="#F2A93B" stroke-dasharray="0.1 11"/>
+    <path d="M122 224C158 284 242 284 278 224" stroke="#F8CB5A" stroke-dasharray="0.1 11" stroke-dashoffset="5.500"/>
+    <path d="M122 224C158 284 242 284 278 224" stroke="#D78A22" stroke-width="1.2"/>
+  </g>
+  <g stroke="#D78A22" stroke-width="1.2" fill="#F2A93B">
+    <path d="M110 230V262"/><path d="M290 230V262"/>
+    <circle cx="110" cy="268" r="5.500"/><circle cx="290" cy="268" r="5.500"/>
+  </g>
+
+  <!-- kalash -->
+  <g>
+    <g stroke="#7F9275" stroke-width="1.4" fill="#A7B49A">
+      <use href="#leaf" transform="translate(200 320) rotate(-165) scale(1.2)"/>
+      <use href="#leaf" transform="translate(200 320) rotate(-15) scale(1.2)"/>
+      <use href="#leaf" transform="translate(200 320) rotate(-130) scale(1.2)"/>
+      <use href="#leaf" transform="translate(200 320) rotate(-50) scale(1.2)"/>
+    </g>
+    <circle cx="200" cy="300" r="17" fill="#E9D3A6" stroke="#B98F4D" stroke-width="2.4"/>
+    <path d="M200 284C196 292 196 306 200 316M188 292C192 300 192 308 190 312M212 292C208 300 208 308 210 312" stroke="#B98F4D" stroke-width="1.2"/>
+    <rect x="184" y="316" width="32" height="14" rx="3" fill="#F6E7BD" stroke="#B98F4D" stroke-width="2.4"/>
+    <path d="M182 330C158 346 158 388 180 398H220C242 388 242 346 218 330Z" fill="url(#pot)" stroke="#B98F4D" stroke-width="3"/>
+    <path d="M166 356C190 368 210 368 234 356" stroke="#B77C83" stroke-width="2.4"/>
+    <path d="M168 372C192 384 208 384 232 372" stroke="#B98F4D" stroke-width="1.6" stroke-dasharray="0.1 6"/>
+    <path d="M200 340C192 346 192 354 200 358C208 354 208 346 200 340Z" fill="#B77C83" stroke="#B77C83" stroke-width="1" opacity=".9"/>
+  </g>
+
+  <!-- diyas -->
+  <g stroke="#B98F4D" stroke-width="2.2" fill="#E6C98B">
+    <path d="M126 388C130 400 146 400 150 388Z"/>
+    <path d="M250 388C254 400 270 400 274 388Z"/>
+  </g>
+  <g fill="#F5B942" stroke="#D78A22" stroke-width="1.2">
+    <path d="M138 386C131 377 137 372 138 366C145 372 145 380 138 386Z"/>
+    <path d="M262 386C255 377 261 372 262 366C269 372 269 380 262 386Z"/>
+  </g>
+
+  <!-- petals + sparkles -->
+  <use href="#petal" transform="translate(70 250) rotate(30)"/>
+  <use href="#petal" transform="translate(332 236) rotate(-40)"/>
+  <use href="#petal" transform="translate(54 340) rotate(-20)"/>
+  <use href="#petal" transform="translate(346 330) rotate(40)"/>
+  <use href="#petal" transform="translate(92 130) rotate(50)"/>
+  <use href="#petal" transform="translate(312 140) rotate(-30)"/>
+  <g fill="#C9A46A">
+    <circle cx="146" cy="88" r="2.400"/><circle cx="260" cy="74" r="2"/><circle cx="40" cy="200" r="2"/><circle cx="362" cy="196" r="2.400"/>
+    <path d="M326 96c1-4 2-5 6-6-4-1-5-2-6-6-1 4-2 5-6 6 4 1 5 2 6 6Z"/>
+    <path d="M72 110c1-4 2-5 6-6-4-1-5-2-6-6-1 4-2 5-6 6 4 1 5 2 6 6Z"/>
+  </g>
+</svg>

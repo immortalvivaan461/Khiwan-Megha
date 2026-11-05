@@ -97,7 +97,8 @@
         endTime: "",
         location: "The Grand Barso, Bharatpur, Rajasthan",
         description: "Join us to celebrate the wedding of Khiwan & Megha at The Grand Barso, Bharatpur, Rajasthan. " +
-            "Celebrations begin on 21 November with the Mehendi (11:00 AM) and the Ring Ceremony & Sangeet (7:00 PM)."
+            "Celebrations: 21 November - Mehendi, Ishq ka Rang (11:00 AM) and Engagement & Sangeet, Jashn-e-Ishq (7:00 PM). " +
+            "22 November - Haldi, Noor-e-Haldi and the Wedding, Shubh Vivaah."
     };
 
     (function setupCalendar() {
@@ -145,6 +146,103 @@
             options.hidden = !open;
             btn.setAttribute("aria-expanded", open);
         });
+    })();
+
+    /* ---------- Our journey carousel ---------- */
+    // Native scroll-snap does the swiping (smooth on touch). This adds arrows, dots, keyboard,
+    // mouse-drag, the "active slide" highlight and a gentle autoplay that stops once the visitor interacts.
+    (function setupCarousel() {
+        const root = document.getElementById("journeyCarousel");
+        if (!root) return;
+        const track = root.querySelector(".fp-track");
+        const slides = [...track.querySelectorAll(".fp-slide")];
+        const dotsBox = root.querySelector(".fp-dots");
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const AUTOPLAY_MS = 4800;   // time between slides while autoplaying
+        let index = 0, ticking = false, timer = null, interacted = false, visible = false;
+
+        const dots = slides.map((_, i) => {
+            const b = document.createElement("button");
+            b.type = "button"; b.className = "fp-dot";
+            b.setAttribute("aria-label", "Go to photo " + (i + 1));
+            b.addEventListener("click", () => { userAction(); goTo(i); });
+            dotsBox.appendChild(b);
+            return b;
+        });
+
+        const offsetFor = i => slides[i].offsetLeft - (track.clientWidth - slides[i].offsetWidth) / 2;
+        function goTo(i, instant) {
+            i = (i + slides.length) % slides.length;
+            track.scrollTo({ left: offsetFor(i), behavior: instant || reduce ? "auto" : "smooth" });
+        }
+        function nearest() {
+            const mid = track.scrollLeft + track.clientWidth / 2;
+            let best = 0, bestD = Infinity;
+            slides.forEach((s, i) => {
+                const d = Math.abs(s.offsetLeft + s.offsetWidth / 2 - mid);
+                if (d < bestD) { bestD = d; best = i; }
+            });
+            return best;
+        }
+        function setActive(i) {
+            index = i;
+            slides.forEach((s, k) => s.classList.toggle("is-active", k === i));
+            dots.forEach((d, k) => { d.classList.toggle("is-active", k === i); d.setAttribute("aria-current", k === i ? "true" : "false"); });
+        }
+        track.addEventListener("scroll", () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => { ticking = false; setActive(nearest()); });
+        }, { passive: true });
+
+        /* arrows + keyboard */
+        root.querySelector(".fp-car-prev").addEventListener("click", () => { userAction(); goTo(index - 1); });
+        root.querySelector(".fp-car-next").addEventListener("click", () => { userAction(); goTo(index + 1); });
+        track.addEventListener("keydown", e => {
+            const k = e.key;
+            if (k !== "ArrowRight" && k !== "ArrowLeft" && k !== "Home" && k !== "End") return;
+            e.preventDefault(); userAction();
+            goTo(k === "ArrowRight" ? index + 1 : k === "ArrowLeft" ? index - 1 : k === "Home" ? 0 : slides.length - 1);
+        });
+
+        /* mouse drag (touch and trackpads already scroll natively) */
+        let drag = null;
+        track.addEventListener("pointerdown", e => {
+            if (e.pointerType !== "mouse" || e.button !== 0) return;
+            userAction();
+            drag = { x: e.clientX, left: track.scrollLeft };
+            track.classList.add("is-dragging");
+        });
+        window.addEventListener("pointermove", e => { if (drag) track.scrollLeft = drag.left - (e.clientX - drag.x); });
+        const endDrag = () => {
+            if (!drag) return;
+            drag = null;
+            track.classList.remove("is-dragging");
+            goTo(nearest());
+        };
+        window.addEventListener("pointerup", endDrag);
+        window.addEventListener("pointercancel", endDrag);
+        track.addEventListener("dragstart", e => e.preventDefault());
+
+        /* autoplay: only while on screen, stops for good after any interaction, never with reduced motion */
+        function stopTimer() { clearInterval(timer); timer = null; }
+        function startTimer() {
+            if (reduce || interacted || timer || !visible) return;
+            timer = setInterval(() => {
+                if (index >= slides.length - 1) return stopTimer();   // stop on the last photo
+                goTo(index + 1);
+            }, AUTOPLAY_MS);
+        }
+        function userAction() { interacted = true; stopTimer(); }
+        track.addEventListener("touchstart", userAction, { passive: true });
+        track.addEventListener("wheel", e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) userAction(); }, { passive: true });
+        new IntersectionObserver(([en]) => { visible = en.isIntersecting; visible ? startTimer() : stopTimer(); }, { threshold: 0.6 }).observe(root);
+
+        /* keep the current slide centred when the screen size or orientation changes */
+        let rz;
+        window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => goTo(index, true), 120); });
+
+        setActive(0);
     })();
 
     /* ---------- RSVP ---------- */

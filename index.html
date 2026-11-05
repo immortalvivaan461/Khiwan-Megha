@@ -135,6 +135,7 @@
                 <a href="#details">Wedding Details</a>
                 <a href="#venue">Venue</a>
                 <a href="#itinerary">Itinerary</a>
+                <a href="#journey">Our Journey</a>
                 <a href="#rsvp">RSVP</a>
             </nav>
             <span class="fp-progress" aria-hidden="true"></span>
@@ -189,7 +190,18 @@
             </div>
             <button class="fp-pill" id="revealDate" type="button">Tap here to reveal the date</button>
 
-            <!-- appears once the date has been revealed -->
+            <!-- appears once the date has been revealed: countdown, then add-to-calendar -->
+            <div class="fp-cd-wrap" id="countdown">
+                <h3 class="fp-cd-title">Counting Down to Forever</h3>
+                <div class="fp-divider"><svg width="22" height="15"><use href="#lotus"/></svg></div>
+                <div class="fp-countdown" aria-label="Countdown to the wedding">
+                    <div><strong id="cd-days">00</strong><span>Days</span></div>
+                    <div><strong id="cd-hours">00</strong><span>Hours</span></div>
+                    <div><strong id="cd-mins">00</strong><span>Minutes</span></div>
+                    <div><strong id="cd-secs">00</strong><span>Seconds</span></div>
+                </div>
+            </div>
+
             <div class="fp-cal">
                 <button class="fp-button fp-cal-btn" id="calBtn" type="button" aria-expanded="false" aria-controls="calOptions">Add to Calendar</button>
                 <div class="fp-cal-options" id="calOptions" hidden>
@@ -224,39 +236,106 @@
                 <button role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1" type="button"><b>Day Two</b><small>22 November</small></button>
             </div>
 
+            <!-- EVENT IMAGES: each card shows a framed illustration from ./assets/images/events/.
+                 To use your own picture, drop a new file in that folder with the same name, or change the src.
+                 (Portrait photos about 800 x 1000 px work best; they are cropped to fit the arch.)
+                 TODO: replace every [Dress code] and the Day Two [Time] with the real details. -->
             <div class="fp-panel" id="panel-1" role="tabpanel" aria-labelledby="tab-1">
                 <p class="fp-day">Day One — 21 November 2026</p>
-                <ol class="fp-timeline">
-                    <li class="fp-tl--sage"><article class="fp-tl-card"><span class="fp-tl-num">01</span><span class="fp-tl-icon" aria-hidden="true">❀</span>
-                        <h3>Mehendi Ceremony</h3><p class="fp-time">11:00 AM onwards</p><p class="fp-dress">Dress Code: <b>Your Choice</b></p></article></li>
-                    <li><article class="fp-tl-card"><span class="fp-tl-num">02</span><span class="fp-tl-icon" aria-hidden="true">✦</span>
-                        <h3>Ring Ceremony &amp; Sangeet</h3><p class="fp-time">7:00 PM onwards</p><p class="fp-dress">Dress Code: <b>Glittery &amp; Bling</b></p></article></li>
+                <ol class="fp-events">
+                    <li class="fp-ev--sage"><article class="fp-ev-card">
+                        <div class="fp-ev-art"><img src="./assets/events/mehendi.svg" alt="Illustration of a henna-decorated hand" width="400" height="500" loading="lazy" draggable="false"></div>
+                        <p class="fp-ev-kind">Mehendi</p>
+                        <h3 class="fp-ev-name">Ishq ka Rang</h3>
+                        <p class="fp-time">11:00 AM onwards</p>
+                        <p class="fp-dress">Dress Code: <b>[Dress code]</b></p>
+                    </article></li>
+                    <li><article class="fp-ev-card">
+                        <div class="fp-ev-art"><img src="./assets/events/engagement-sangeet.svg" alt="Illustration of two rings with a diamond, surrounded by music notes" width="400" height="500" loading="lazy" draggable="false"></div>
+                        <p class="fp-ev-kind">Engagement &amp; Sangeet</p>
+                        <h3 class="fp-ev-name">Jashn-e-Ishq</h3>
+                        <p class="fp-time">7:00 PM onwards</p>
+                        <p class="fp-dress">Dress Code: <b>[Dress code]</b></p>
+                    </article></li>
                 </ol>
             </div>
 
-            <!-- TODO: replace the Day Two placeholders with your real events and times -->
             <div class="fp-panel" id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden>
                 <p class="fp-day">Day Two — 22 November 2026</p>
-                <ol class="fp-timeline">
-                    <li class="fp-tl--sage"><article class="fp-tl-card"><span class="fp-tl-num">01</span><span class="fp-tl-icon" aria-hidden="true">❀</span>
-                        <h3>Baraat &amp; Milni</h3><p class="fp-time">[Time] onwards</p><p class="fp-dress">Dress Code: <b>[Dress code]</b></p></article></li>
-                    <li><article class="fp-tl-card"><span class="fp-tl-num">02</span><span class="fp-tl-icon" aria-hidden="true">✦</span>
-                        <h3>Wedding Ceremony</h3><p class="fp-time">[Time] onwards</p><p class="fp-dress">Dress Code: <b>[Dress code]</b></p></article></li>
-                    <li class="fp-tl--sage"><article class="fp-tl-card"><span class="fp-tl-num">03</span><span class="fp-tl-icon" aria-hidden="true">❀</span>
-                        <h3>Reception</h3><p class="fp-time">[Time] onwards</p><p class="fp-dress">Dress Code: <b>[Dress code]</b></p></article></li>
+                <ol class="fp-events">
+                    <li class="fp-ev--sage"><article class="fp-ev-card">
+                        <div class="fp-ev-art"><img src="./assets/events/haldi.svg" alt="Illustration of a brass bowl of turmeric with marigolds" width="400" height="500" loading="lazy" draggable="false"></div>
+                        <p class="fp-ev-kind">Haldi</p>
+                        <h3 class="fp-ev-name">Noor-e-Haldi</h3>
+                        <p class="fp-time">[Time] onwards</p>
+                        <p class="fp-dress">Dress Code: <b>[Dress code]</b></p>
+                    </article></li>
+                    <li><article class="fp-ev-card">
+                        <div class="fp-ev-art"><img src="./assets/events/wedding.svg" alt="Illustration of a wedding mandap with garlands and a kalash" width="400" height="500" loading="lazy" draggable="false"></div>
+                        <p class="fp-ev-kind">Wedding</p>
+                        <h3 class="fp-ev-name">Shubh Vivaah</h3>
+                        <p class="fp-time">[Time] onwards</p>
+                        <p class="fp-dress">Dress Code: <b>[Dress code]</b></p>
+                    </article></li>
                 </ol>
             </div>
         </section>
 
-        <!-- Countdown -->
-        <section class="fp-count" id="countdown">
-            <h2 class="fp-title">Counting Down to Forever</h2>
-            <div class="fp-divider"><svg width="22" height="15"><use href="#lotus"/></svg></div>
-            <div class="fp-countdown" aria-label="Countdown to the wedding">
-                <div><strong id="cd-days">00</strong><span>Days</span></div>
-                <div><strong id="cd-hours">00</strong><span>Hours</span></div>
-                <div><strong id="cd-mins">00</strong><span>Minutes</span></div>
-                <div><strong id="cd-secs">00</strong><span>Seconds</span></div>
+        <!-- Our journey (carousel). Photos: ./assets/images/journey/journey-1.jpg ... journey-5.jpg
+             TODO: edit the chapter titles and captions to tell your own story. -->
+        <section class="fp-journey" id="journey">
+            <p class="fp-script">Our Story</p>
+            <h2 class="fp-title">Our Journey</h2>
+            <p class="fp-lead">A few of the moments that brought us here.</p>
+
+            <div class="fp-carousel" id="journeyCarousel" role="region" aria-roledescription="carousel" aria-label="Our journey in photos">
+                <div class="fp-track" tabindex="0">
+                <figure class="fp-slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 5">
+                    <div class="fp-slide-photo"><img src="./assets/images/journey/journey-1.jpg" alt="Khiwan and Megha: Where It All Began" loading="lazy" draggable="false" onerror="this.style.display='none'"></div>
+                    <figcaption>
+                        <small>Chapter 01</small>
+                        <h3>Where It All Began</h3>
+                        <p>A hello that quietly changed everything.</p>
+                    </figcaption>
+                </figure>
+                <figure class="fp-slide" role="group" aria-roledescription="slide" aria-label="2 of 5">
+                    <div class="fp-slide-photo"><img src="./assets/images/journey/journey-2.jpg" alt="Khiwan and Megha: Falling for You" loading="lazy" draggable="false" onerror="this.style.display='none'"></div>
+                    <figcaption>
+                        <small>Chapter 02</small>
+                        <h3>Falling for You</h3>
+                        <p>Simple days that became our favourite memories.</p>
+                    </figcaption>
+                </figure>
+                <figure class="fp-slide" role="group" aria-roledescription="slide" aria-label="3 of 5">
+                    <div class="fp-slide-photo"><img src="./assets/images/journey/journey-3.jpg" alt="Khiwan and Megha: Adventures Together" loading="lazy" draggable="false" onerror="this.style.display='none'"></div>
+                    <figcaption>
+                        <small>Chapter 03</small>
+                        <h3>Adventures Together</h3>
+                        <p>Every trip, every laugh, every little detour.</p>
+                    </figcaption>
+                </figure>
+                <figure class="fp-slide" role="group" aria-roledescription="slide" aria-label="4 of 5">
+                    <div class="fp-slide-photo"><img src="./assets/images/journey/journey-4.jpg" alt="Khiwan and Megha: Choosing Forever" loading="lazy" draggable="false" onerror="this.style.display='none'"></div>
+                    <figcaption>
+                        <small>Chapter 04</small>
+                        <h3>Choosing Forever</h3>
+                        <p>The moment we knew this was for always.</p>
+                    </figcaption>
+                </figure>
+                <figure class="fp-slide" role="group" aria-roledescription="slide" aria-label="5 of 5">
+                    <div class="fp-slide-photo"><img src="./assets/images/journey/journey-5.jpg" alt="Khiwan and Megha: Our Forever Begins" loading="lazy" draggable="false" onerror="this.style.display='none'"></div>
+                    <figcaption>
+                        <small>Chapter 05</small>
+                        <h3>Our Forever Begins</h3>
+                        <p>And now we celebrate with the people we love most.</p>
+                    </figcaption>
+                </figure>
+                </div>
+                <div class="fp-car-controls">
+                    <button class="fp-car-btn fp-car-prev" type="button" aria-label="Previous photo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+                    <div class="fp-dots"></div>
+                    <button class="fp-car-btn fp-car-next" type="button" aria-label="Next photo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+                </div>
             </div>
         </section>
 

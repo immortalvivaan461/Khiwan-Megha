@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Engagement &amp; Sangeet – interlocked rings, diamond and music</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF9F3"/><stop offset="1" stop-color="#F4DDE0"/></linearGradient>
+    <linearGradient id="gem" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F2D3D8"/></linearGradient>
+    <path id="leaf" d="M0 0C8-13 24-13 34 0 24 13 8 13 0 0Z"/>
+    <path id="star" d="M0-10C1.800-3.500 3.500-1.800 10 0 3.500 1.800 1.800 3.500 0 10-1.800 3.500-3.500 1.800-10 0-3.500-1.800-1.800-3.500 0-10Z"/>
+    <clipPath id="topX"><rect x="180" y="240" width="40" height="56"/></clipPath>
+    <clipPath id="botX"><rect x="180" y="324" width="40" height="56"/></clipPath>
+  </defs>
+
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <circle cx="200" cy="300" r="156" stroke="#C9A46A" stroke-width="1.6" stroke-dasharray="0.1 9" opacity=".9"/>
+  <circle cx="200" cy="300" r="132" fill="#FFFDF9" opacity=".75"/>
+
+  <!-- laurel base -->
+  <g stroke="#7F9275" stroke-width="1.4" fill="#A7B49A">
+    <path d="M200 430C150 430 108 410 84 372" stroke-width="2" fill="none"/>
+    <path d="M200 430C250 430 292 410 316 372" stroke-width="2" fill="none"/>
+    <use href="#leaf" transform="translate(176 428) rotate(-150)"/>
+    <use href="#leaf" transform="translate(150 424) rotate(-30)"/>
+    <use href="#leaf" transform="translate(130 414) rotate(-160)"/>
+    <use href="#leaf" transform="translate(110 400) rotate(-40)"/>
+    <use href="#leaf" transform="translate(96 384) rotate(-170)"/>
+    <use href="#leaf" transform="translate(224 428) rotate(-30)"/>
+    <use href="#leaf" transform="translate(250 424) rotate(-150)"/>
+    <use href="#leaf" transform="translate(270 414) rotate(-20)"/>
+    <use href="#leaf" transform="translate(290 400) rotate(-140)"/>
+    <use href="#leaf" transform="translate(304 384) rotate(-10)"/>
+  </g>
+
+  <!-- two rings -->
+  <g stroke="#C9A46A">
+    <circle cx="160" cy="316" r="58" stroke-width="5"/>
+    <circle cx="160" cy="316" r="48" stroke-width="2"/>
+    <circle cx="240" cy="316" r="58" stroke-width="5"/>
+    <circle cx="240" cy="316" r="48" stroke-width="2"/>
+  </g>
+  <!-- interlock: left over right at the top, right over left at the bottom -->
+  <g clip-path="url(#topX)">
+    <circle cx="160" cy="316" r="58" stroke="#FCF4F0" stroke-width="10"/>
+    <circle cx="160" cy="316" r="58" stroke="#C9A46A" stroke-width="5"/>
+    <circle cx="160" cy="316" r="48" stroke="#C9A46A" stroke-width="2"/>
+  </g>
+  <g clip-path="url(#botX)">
+    <circle cx="240" cy="316" r="58" stroke="#FCF4F0" stroke-width="10"/>
+    <circle cx="240" cy="316" r="58" stroke="#C9A46A" stroke-width="5"/>
+    <circle cx="240" cy="316" r="48" stroke="#C9A46A" stroke-width="2"/>
+  </g>
+
+  <!-- diamond on the right ring -->
+  <g stroke="#B77C83" stroke-width="2.4">
+    <path d="M222 222H258L274 238L240 270L206 238Z" fill="url(#gem)"/>
+    <path d="M206 238H274M222 222L230 238L240 222L250 238L258 222M230 238L240 270L250 238" stroke-width="1.5"/>
+  </g>
+
+  <!-- music notes -->
+  <g stroke="#B77C83" stroke-width="3.2" fill="#B77C83">
+    <path d="M92 214V176L122 168V206" fill="none"/>
+    <path d="M92 182L122 174" stroke-width="6" fill="none"/>
+    <ellipse cx="85" cy="216" rx="8.500" ry="6.500" transform="rotate(-20 85 216)"/>
+    <ellipse cx="115" cy="208" rx="8.500" ry="6.500" transform="rotate(-20 115 208)"/>
+    <g transform="translate(4 -78)">
+      <path d="M318 392V356C330 358 338 366 336 378" fill="none"/>
+      <ellipse cx="311" cy="394" rx="8" ry="6" transform="rotate(-20 311 394)"/>
+    </g>
+  </g>
+
+  <!-- sparkles -->
+  <g fill="#C9A46A">
+    <use href="#star" transform="translate(300 206) scale(1.4)"/>
+    <use href="#star" transform="translate(326 276) scale(.8)"/>
+    <use href="#star" transform="translate(76 292) scale(.9)"/>
+    <use href="#star" transform="translate(170 150) scale(.8)"/>
+    <circle cx="258" cy="140" r="2.4"/><circle cx="120" cy="120" r="2"/><circle cx="342" cy="330" r="2"/>
+  </g>
+</svg>

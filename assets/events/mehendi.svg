@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Mehendi – decorated hand and henna cone</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF9F3"/><stop offset="1" stop-color="#F4DDE0"/></linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF6EE"/><stop offset="1" stop-color="#F6D9D0"/></linearGradient>
+    <path id="leaf" d="M0 0C8-13 24-13 34 0 24 13 8 13 0 0Z"/>
+    <clipPath id="hand"><path id="handPath" d="M158 420 L152 345 C130 330 100 300 96 270 C94 255 112 250 120 262 C128 275 140 292 152 300 L152 222 C152 205 176 205 176 222 L176 268 L179 268 L179 202 C179 184 205 184 205 202 L205 268 L208 268 L208 216 C208 200 232 200 232 216 L232 268 L235 268 L235 248 C235 232 257 232 257 248 L257 320 C260 350 252 390 246 420 Z"/></clipPath>
+  </defs>
+
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <circle cx="200" cy="290" r="156" stroke="#C9A46A" stroke-width="1.6" stroke-dasharray="0.1 9" opacity=".9"/>
+  <circle cx="200" cy="290" r="132" fill="#FFFDF9" opacity=".75"/>
+
+  <!-- sage sprigs -->
+  <g stroke="#7F9275" stroke-width="1.4" fill="#A7B49A">
+    <path d="M70 468C64 430 80 398 112 382" stroke-width="2" fill="none"/>
+    <use href="#leaf" transform="translate(68 448) rotate(-130)"/>
+    <use href="#leaf" transform="translate(70 430) rotate(-20)"/>
+    <use href="#leaf" transform="translate(76 410) rotate(-150)"/>
+    <use href="#leaf" transform="translate(88 396) rotate(-35)"/>
+    <use href="#leaf" transform="translate(102 386) rotate(-165)"/>
+    <path d="M338 120C350 150 344 180 322 200" stroke-width="2" fill="none"/>
+    <use href="#leaf" transform="translate(340 136) rotate(20)"/>
+    <use href="#leaf" transform="translate(347 160) rotate(150)"/>
+    <use href="#leaf" transform="translate(338 182) rotate(30)"/>
+    <use href="#leaf" transform="translate(326 198) rotate(160)"/>
+  </g>
+
+  <!-- the hand -->
+  <g transform="translate(22 -6) translate(200 310) scale(1.15) translate(-200 -310)">
+    <path d="M158 420 L152 345 C130 330 100 300 96 270 C94 255 112 250 120 262 C128 275 140 292 152 300 L152 222 C152 205 176 205 176 222 L176 268 L179 268 L179 202 C179 184 205 184 205 202 L205 268 L208 268 L208 216 C208 200 232 200 232 216 L232 268 L235 268 L235 248 C235 232 257 232 257 248 L257 320 C260 350 252 390 246 420 Z"
+          fill="url(#skin)" stroke="#C9A46A" stroke-width="3"/>
+    <g clip-path="url(#hand)" stroke="#A95F6D" stroke-width="1.7">
+      <!-- palm mandala -->
+      <circle cx="205" cy="345" r="5" fill="#A95F6D"/>
+      <circle cx="205" cy="345" r="13"/>
+      <circle cx="205" cy="345" r="23" stroke-dasharray="0.1 5.5" stroke-width="3"/>
+      <g fill="#F6D9D0">
+        <ellipse cx="205" cy="322" rx="4.5" ry="9"/>
+        <ellipse cx="205" cy="322" rx="4.5" ry="9" transform="rotate(45 205 345)"/>
+        <ellipse cx="205" cy="322" rx="4.5" ry="9" transform="rotate(90 205 345)"/>
+        <ellipse cx="205" cy="322" rx="4.5" ry="9" transform="rotate(135 205 345)"/>
+        <ellipse cx="205" cy="322" rx="4.5" ry="9" transform="rotate(180 205 345)"/>
+        <ellipse cx="205" cy="322" rx="4.5" ry="9" transform="rotate(225 205 345)"/>
+        <ellipse cx="205" cy="322" rx="4.5" ry="9" transform="rotate(270 205 345)"/>
+        <ellipse cx="205" cy="322" rx="4.5" ry="9" transform="rotate(315 205 345)"/>
+      </g>
+      <circle cx="205" cy="345" r="33"/>
+      <circle cx="205" cy="345" r="38" stroke-dasharray="0.1 7" stroke-width="3"/>
+      <!-- finger tips + dotted lines -->
+      <g fill="#A95F6D" stroke="none">
+        <path d="M152 224 C152 205 176 205 176 224 Z"/>
+        <path d="M179 204 C179 184 205 184 205 204 Z"/>
+        <path d="M208 218 C208 200 232 200 232 218 Z"/>
+        <path d="M235 250 C235 232 257 232 257 250 Z"/>
+      </g>
+      <g stroke-width="3.2" stroke-dasharray="0.1 8">
+        <path d="M164 232V264"/><path d="M192 212V264"/><path d="M220 226V264"/><path d="M246 256V268"/>
+        <path d="M110 268C122 284 134 296 150 306"/>
+      </g>
+      <!-- wrist bands -->
+      <path d="M150 392C185 402 220 402 252 390" stroke-width="2"/>
+      <path d="M150 404C185 414 220 414 252 402" stroke-width="1.4" stroke-dasharray="1 5"/>
+      <path d="M150 276C170 286 240 286 258 276" stroke-width="1.4" stroke-dasharray="1 5"/>
+    </g>
+  </g>
+
+  <!-- henna cone -->
+  <g transform="translate(322 394) rotate(28)">
+    <path d="M-22 0 C-22 -8 22 -8 22 0 L4 74 L-4 74 Z" fill="#FFF9F3" stroke="#C9A46A" stroke-width="2.6"/>
+    <path d="M-12 38 L12 38 L4 74 L-4 74 Z" fill="#A95F6D" stroke="#A95F6D" stroke-width="1"/>
+    <path d="M-18 8 C-6 14 6 14 18 8" stroke="#C9A46A" stroke-width="1.6"/>
+    <path d="M-14 20 C-4 25 4 25 14 20" stroke="#C9A46A" stroke-width="1.4"/>
+  </g>
+
+  <!-- henna flourishes -->
+  <g stroke="#A95F6D" stroke-width="1.8">
+    <path d="M300 440C310 452 326 452 332 442C338 432 328 424 322 430" opacity=".9"/>
+    <circle cx="344" cy="448" r="2" fill="#A95F6D"/><circle cx="352" cy="436" r="1.6" fill="#A95F6D"/>
+  </g>
+
+  <!-- sparkles -->
+  <g fill="#C9A46A">
+    <path d="M92 150c1.5-6 2.5-7 8-8-5.5-1-6.5-2-8-8-1.5 6-2.5 7-8 8 5.500 1 6.500 2 8 8Z"/>
+    <path d="M318 270c1-4 2-5 6-6-4-1-5-2-6-6-1 4-2 5-6 6 4 1 5 2 6 6Z"/>
+    <circle cx="120" cy="104" r="2.4"/><circle cx="286" cy="96" r="2"/><circle cx="60" cy="300" r="2"/>
+  </g>
+</svg>

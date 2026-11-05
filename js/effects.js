@@ -5,7 +5,7 @@
 
     /* ---- mark reveal targets while the page is still hidden (no flash) ---- */
     const sel = ".fp-title,.fp-lead,.fp-invite-card,.fp-invite-card > *,.fp-venue-photo,.fp-venue-grid > div:last-child > *," +
-        ".fp-scratch > *,.fp-tabs,.fp-timeline li,.fp-countdown,.fp-form,.fp-footer > *";
+        ".fp-scratch > *,.fp-tabs,.fp-events li,.fp-journey > *,.fp-countdown,.fp-form,.fp-footer > *";
     const els = [...new Set($$(sel))].filter(e => !e.classList.contains("fp-divider"));
     const seen = new Map();
     els.forEach(el => {
@@ -14,7 +14,7 @@
         el.classList.add("rv");
         el.style.setProperty("--d", Math.min(n, 6) * 0.09 + "s");
     });
-    const draws = $$(".fp-divider,.fp-timeline");
+    const draws = $$(".fp-divider");
     draws.forEach(el => el.classList.add("draw"));
 
     /* ---- started by gate.js once the doors open ---- */
