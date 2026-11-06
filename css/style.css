@@ -209,19 +209,19 @@ body {
     gap: 2px;
     cursor: pointer;
     font-family: 'Great Vibes', cursive;
-    font-size: 20px;
+    font-size: 15px;
     will-change: transform, opacity;
 }
 
 .wax-seal:focus-visible {
-    outline: 2px solid var(--ivory);
+    outline: 1px solid var(--ivory);
     outline-offset: 4px;
 }
 
 /* your logo, sitting on top of the seal. Change the size here (percentage of the seal). */
 .seal-logo {
-    width: 64%;
-    height: 64%;
+    width: 95%;
+    height: 95%;
     object-fit: contain;
     pointer-events: none;
     user-select: none;
