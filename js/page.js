@@ -281,10 +281,14 @@
 
 /* ---------- GOOGLE SHEETS RSVP ---------- */
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzk9DSD804LxDF0vpXwjxOnU3Rxk3o_-JMki3PwjG0VDU9f_lQMzs6be1M5uzfxyoQ9Gg/exec";
+
+// ---------- GOOGLE SHEETS RSVP ---------- //
+
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbyAu4vld4YBxZQfBo5Tu7mS33M2Avj3X8AuL8bMIIA6HjZMqN7lKdR1LD3ljsPuFNu6/exec";
 
 const form = document.getElementById("rsvpForm");
 const status = document.getElementById("rsvpStatus");
+const submitButton = form.querySelector('button[type="submit"]');
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -296,40 +300,41 @@ form.addEventListener("submit", async (e) => {
 
     if (!name || !attending) {
         status.textContent =
-            "Please add your name and confirm your attendance.";
+            "Please add your name and attendance confirmation.";
         return;
     }
 
-    const submitButton = form.querySelector(
-        'button[type="submit"]'
-    );
+    const data = {
+        name: name,
+        phone: (f.get("phone") || "").trim(),
+        guests: f.get("guests"),
+        attending: attending === "yes" ? "Yes" : "No",
+        message: (f.get("message") || "").trim()
+    };
 
     submitButton.disabled = true;
-    submitButton.textContent = "Sending...";
-
-    const data = new URLSearchParams({
-        name: name,
-        phone: f.get("phone") || "",
-        guests: f.get("guests") || "1",
-        attending: attending,
-        message: f.get("message") || ""
-    });
+    submitButton.textContent = "Submitting...";
+    status.textContent = "";
 
     try {
-        await fetch(GOOGLE_SCRIPT_URL, {
+        await fetch(GOOGLE_SHEET_URL, {
             method: "POST",
             mode: "no-cors",
-            body: data
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify(data)
         });
 
-        status.textContent = attending === "yes"
-            ? `Thank you, ${name}. We can't wait to celebrate with you!`
-            : `Thank you, ${name}. You will be missed.`;
+        // no-cors cannot confirm whether Google saved the entry.
+        // Show a pending message rather than claiming success.
+        status.textContent =
+            "Your response has been submitted. Thank you!";
 
         form.reset();
 
     } catch (error) {
-        console.error("RSVP submission error:", error);
+        console.error("RSVP Error:", error);
 
         status.textContent =
             "Something went wrong. Please try again.";
@@ -339,3 +344,4 @@ form.addEventListener("submit", async (e) => {
             "Kindly send your confirmation";
     }
 });
+})();
