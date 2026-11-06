@@ -303,3 +303,54 @@ body {
     .intro-text { margin-bottom: 30px; }
     .footer-text { margin-top: 50px; }
 }
+
+
+.music-toggle {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 9999;
+
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff9f3;
+    color: #b77c83;
+    border: 1px solid #c9a46a;
+
+    font-family: serif;
+    font-size: 25px;
+
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(89, 65, 61, 0.18);
+    transition: all 0.3s ease;
+}
+
+.music-toggle:hover {
+    transform: scale(1.08);
+    background: #c9a46a;
+    color: #fff9f3;
+}
+
+.music-toggle.is-playing .music-icon {
+    animation: musicPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+@media (max-width: 600px) {
+    .music-toggle {
+        width: 44px;
+        height: 44px;
+        right: 16px;
+        bottom: 16px;
+    }
+}

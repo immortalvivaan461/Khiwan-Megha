@@ -118,3 +118,64 @@ function openEnvelope() {
 }
 
 envelope.addEventListener("click", openEnvelope);
+
+
+
+/* ---------- WEDDING MUSIC ---------- */
+
+const music = document.getElementById("weddingMusic");
+const musicToggle = document.getElementById("musicToggle");
+
+function updateMusicButton() {
+    const playing = !music.paused;
+
+    musicToggle.classList.toggle("is-playing", playing);
+    musicToggle.setAttribute(
+        "aria-label",
+        playing ? "Pause music" : "Play music"
+    );
+
+    musicToggle.innerHTML = playing
+        ? '<span class="music-icon">♫</span>'
+        : '<span class="music-icon">♪</span>';
+}
+
+// Attempt autoplay on page load
+async function startWeddingMusic() {
+    try {
+        await music.play();
+        updateMusicButton();
+    } catch (error) {
+        // Autoplay blocked by browser; wait for visitor interaction
+        updateMusicButton();
+    }
+}
+
+// Play / pause button
+musicToggle.addEventListener("click", async () => {
+    if (music.paused) {
+        try {
+            await music.play();
+        } catch (error) {
+            console.log("Music playback could not start.");
+        }
+    } else {
+        music.pause();
+    }
+
+    updateMusicButton();
+});
+
+// Start music on the first visitor interaction if autoplay was blocked
+["click", "touchstart", "keydown"].forEach(event => {
+    document.addEventListener(event, () => {
+        if (music.paused) {
+            startWeddingMusic();
+        }
+    }, { once: true });
+});
+
+music.addEventListener("play", updateMusicButton);
+music.addEventListener("pause", updateMusicButton);
+
+startWeddingMusic();
