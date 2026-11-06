@@ -272,12 +272,12 @@
 /* ---------- hashtag in the navbar ---------- */
 /* phones (default): sits between the logo and the menu button; wraps to two lines on very small screens */
 .fp-tag { position: relative; flex: 1 1 auto; min-width: 0; text-align: center; opacity: 0; transform: translateY(-6px) scale(.96); pointer-events: none; user-select: none;
-    transition: opacity 1.2s ease, transform 1.2s var(--ease); }
+    transition: opacity .5s ease, transform .5s var(--ease); }
 .fp-tag.in { opacity: 1; transform: none; }
 .fp-tag-wrap { position: relative; display: inline-block; padding: 2px 6px; }
 .fp-tag-text { display: inline-block; font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: clamp(12.5px, 3.7vw, 16px); line-height: 1.2; letter-spacing: .3px;
     text-wrap: balance;
-    background: linear-gradient(90deg, var(--rose), var(--gold), #E6CB94, var(--gold), var(--rose)) 0 0 / 200% 100%;
+    background: var(--rose);
     -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 5s linear infinite; }
 .fp-tag-hi { font-family: 'Tiro Devanagari Hindi', serif; font-style: normal; font-weight: 400; }
 /* twinkling four-point stars around the text */

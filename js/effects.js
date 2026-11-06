@@ -92,7 +92,7 @@
                     { x: r(-28, 28), y: r(-24, 24), scale: r(0.5, 1.3), opacity: 0,
                       duration: r(0.9, 1.6), delay: r(0, 0.8), ease: "power2.out", onComplete: () => s.remove() });
             }
-        }, 350);
+        }, 150);
     };
 
     /* ---- countdown: tick when a number changes ---- */
