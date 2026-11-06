@@ -73,6 +73,28 @@
     }
     page.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
 
+    /* ---- navbar hashtag: fades in and bursts into sparkles once the curtains are gone (called by gate.js) ---- */
+    window.revealHashtag = function () {
+        const tag = page.querySelector(".fp-tag");
+        if (!tag || tag.classList.contains("in")) return;
+        tag.classList.add("in");
+        if (reduce || typeof gsap === "undefined") return;
+        const wrap = tag.querySelector(".fp-tag-wrap");
+        const r = (a, b) => a + Math.random() * (b - a);
+        setTimeout(() => {
+            const w = wrap.offsetWidth, h = wrap.offsetHeight;
+            for (let i = 0; i < 24; i++) {
+                const s = document.createElement("span");
+                s.className = "fp-spark";
+                s.style.left = r(0, w) + "px"; s.style.top = r(0, h) + "px";
+                wrap.appendChild(s);
+                gsap.fromTo(s, { x: 0, y: 0, scale: 0, opacity: 1 },
+                    { x: r(-28, 28), y: r(-24, 24), scale: r(0.5, 1.3), opacity: 0,
+                      duration: r(0.9, 1.6), delay: r(0, 0.8), ease: "power2.out", onComplete: () => s.remove() });
+            }
+        }, 350);
+    };
+
     /* ---- countdown: tick when a number changes ---- */
     ["days", "hours", "mins", "secs"].forEach(k => {
         const el = document.getElementById("cd-" + k);
@@ -99,6 +121,22 @@
             gsap.fromTo(s, { x: 0, y: 0, scale: 0, opacity: 1 },
                 { x: Math.cos(a) * d, y: Math.sin(a) * d, scale: 0.6 + Math.random() * 1.2, opacity: 0,
                   duration: 1.1 + Math.random() * 0.6, ease: "power2.out", onComplete: () => s.remove() });
+        }
+        // simple confetti: pops up out of the card, then drifts down while spinning
+        const confetti = ["#C9A46A", "#B77C83", "#E3A9B1", "#E6CB94", "#A7B49A", "#FFF9F3"];
+        for (let i = 0; i < 36; i++) {
+            const c = document.createElement("span");
+            c.className = "fp-confetti";
+            c.style.left = cx + "px"; c.style.top = cy + "px";
+            c.style.background = confetti[i % confetti.length];
+            sec.appendChild(c);
+            const x = (Math.random() - 0.5) * 340;
+            gsap.timeline({ onComplete: () => c.remove() })
+                .fromTo(c, { x: 0, y: 0, scale: 0, opacity: 1, rotation: Math.random() * 360 },
+                    { x: x, y: -(80 + Math.random() * 120), scale: 1, rotation: "+=" + (180 + Math.random() * 240),
+                      duration: 0.6 + Math.random() * 0.3, ease: "power2.out" })
+                .to(c, { x: x + (Math.random() - 0.5) * 80, y: "+=" + (260 + Math.random() * 160), rotation: "+=" + (240 + Math.random() * 360),
+                         opacity: 0, duration: 1.6 + Math.random() * 0.8, ease: "power1.in" });
         }
     }).observe(card, { attributes: true, attributeFilter: ["class"] });
 })();

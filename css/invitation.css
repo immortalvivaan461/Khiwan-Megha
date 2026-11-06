@@ -87,9 +87,15 @@
 .fp-hero-date { display: flex; align-items: center; justify-content: center; gap: 16px; font-size: 18px; font-weight: 500; letter-spacing: 6px; }
 .fp-hero-date::before, .fp-hero-date::after { content: ""; width: clamp(24px, 8vw, 60px); height: 1px; background: #E6CB94; }
 .fp-hero-place { margin-top: 6px; font-size: 17px; opacity: .92; }
-.fp-cue { position: absolute; bottom: 24px; left: 50%; translate: -50% 0; width: 22px; height: 36px; border: 1px solid rgba(255,249,243,.8); border-radius: 12px; }
-.fp-cue::after { content: ""; position: absolute; top: 7px; left: 50%; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: var(--ivory); animation: cue 1.8s ease-in-out infinite; }
-@keyframes cue { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(12px); opacity: 0; } 100% { opacity: 0; } }
+/* "Scroll to Discover" cue at the bottom of the hero */
+.fp-cue { position: absolute; bottom: 18px; left: 50%; translate: -50% 0; display: flex; flex-direction: column; align-items: center; gap: 4px; max-width: 90%; color: var(--ivory); text-decoration: none; text-align: center; -webkit-tap-highlight-color: transparent; text-shadow: 0 1px 10px rgba(0,0,0,.45); }
+.fp-cue-text { font-style: italic; font-weight: 500; font-size: clamp(14px, 3.8vw, 17px); letter-spacing: 3px; text-transform: uppercase; white-space: nowrap; opacity: .92; animation: cueFade 2.4s ease-in-out infinite; }
+.fp-cue-arrow { display: block; color: #E6CB94; filter: drop-shadow(0 1px 6px rgba(0,0,0,.45)); animation: cue 1.8s ease-in-out infinite; }
+.fp-cue:hover .fp-cue-text { opacity: 1; }
+.fp-cue:focus-visible { outline: 2px solid var(--ivory); outline-offset: 6px; border-radius: 6px; }
+@keyframes cue { 0%, 100% { transform: translateY(0); opacity: .5; } 50% { transform: translateY(7px); opacity: 1; } }
+@keyframes cueFade { 0%, 100% { opacity: .65; } 50% { opacity: 1; } }
+@media (max-width: 419px) { .fp-cue-text { letter-spacing: 2px; } }
 
 /* ---------- invitation card (arch) ---------- */
 .final-page > .fp-invite { background: linear-gradient(180deg, var(--ivory), var(--blush)); }
@@ -110,7 +116,7 @@
 .fp-venue-photo, .fp-arch-photo { position: relative; overflow: hidden; }
 .fp-venue-photo { aspect-ratio: 4 / 3; border-radius: 14px; box-shadow: 0 16px 36px rgba(89,65,61,.25); }
 .fp-venue-photo::before, .fp-arch-photo::before { content: ""; position: absolute; inset: 0; transition: transform 1.4s var(--ease); }
-.fp-venue-photo::before { background: url("../assets/images/destination.jpg") center / cover, linear-gradient(135deg, #C9A46A, #B77C83); }
+.fp-venue-photo::before { background: url("../assets/images/destination.png") center / cover, linear-gradient(135deg, #C9A46A, #B77C83); }
 .fp-venue-photo::after { content: ""; position: absolute; inset: 10px; border: 1px solid rgba(255,249,243,.75); border-radius: 8px; }
 .fp-venue-photo:hover::before { transform: scale(1.07); }
 .fp-venue-name { margin: 4px 0 10px; font-weight: 600; font-size: clamp(30px, 5vw, 42px); line-height: 1.1; letter-spacing: 2px; text-transform: uppercase; }
@@ -127,6 +133,13 @@
 .fp-scratch-date strong { font-family: 'Great Vibes', cursive; font-weight: 400; font-size: 44px; line-height: 1.1; color: var(--rose); }
 .fp-scratch-date small { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; }
 .fp-scratch-card.is-done .fp-scratch-date strong { animation: pop 1s var(--ease) both; }
+
+/* revealed date: bold, with a small pop (the confetti burst is added in effects.js) */
+.fp-scratch-card.is-done { animation: cardPop .9s var(--ease) both; }
+.fp-scratch-card.is-done .fp-scratch-date strong b { font-weight: 700; -webkit-text-stroke: 1.2px var(--rose); }
+@keyframes cardPop { 0% { transform: scale(.94); } 45% { transform: scale(1.05); } 100% { transform: scale(1); } }
+.fp-confetti { position: absolute; z-index: 3; width: 8px; height: 12px; border-radius: 2px; pointer-events: none; }
+
 @keyframes pop { from { transform: scale(.8); opacity: 0; } to { transform: none; opacity: 1; } }
 .fp-scratch-card canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: grab; transition: opacity .9s ease; }
 .fp-scratch-card.is-done canvas { opacity: 0; pointer-events: none; }
@@ -173,7 +186,11 @@
 
 .fp-ev-kind { font-size: 14px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; opacity: .75; }
 .fp-ev-name { margin: 2px 0 14px; font-family: 'Great Vibes', cursive; font-weight: 400; font-size: clamp(40px, 10vw, 48px); line-height: 1.1; color: var(--rose); }
-@media (min-width: 720px) { .fp-events { grid-template-columns: 1fr 1fr; max-width: none; gap: 32px; } }
+/* two cards per row; a leftover last card (e.g. Day Two has 5) is centred instead of hanging on the left */
+@media (min-width: 720px) {
+    .fp-events { display: flex; flex-wrap: wrap; justify-content: center; max-width: none; gap: 32px; }
+    .fp-events li { flex: 0 0 calc((100% - 32px) / 2); }
+}
 
 .fp-time { display: inline-block; padding: 3px 14px; border-radius: 999px; background: var(--brown); color: var(--ivory); font-size: 16px; }
 .fp-dress { margin-top: 10px; font-size: 16px; }
@@ -247,10 +264,43 @@
 /* ---------- footer ---------- */
 .final-page > .fp-footer { background: linear-gradient(180deg, var(--ivory), var(--blush)); }
 .fp-arch-photo { width: 150px; height: 200px; margin-bottom: 22px; border: 3px solid var(--ivory); border-radius: 999px 999px 6px 6px; box-shadow: 0 14px 30px rgba(89,65,61,.25); animation: float 6s ease-in-out infinite; }
-.fp-arch-photo::before { background: url("https://res.cloudinary.com/dfqqacmzv/image/upload/v1793939413/D0273CDF-9A84-48EB-BE09-43907E71B856_l4vgmw.png") center / cover, linear-gradient(180deg, #E9BFC4, #B77C83); }
+.fp-arch-photo::before { background: url("../assets/illustrations/wedding_elephant_parasol_800x1000.svg") center / cover, linear-gradient(180deg, #E9BFC4, #B77C83); }
 @keyframes float { 50% { transform: translateY(-8px); } }
 .fp-footer-names { margin: 4px 0; font-weight: 500; font-size: clamp(28px, 7vw, 40px); letter-spacing: 3px; }
 .fp-footer-venue { margin-bottom: 18px; font-size: 14px; line-height: 1.8; letter-spacing: 3px; text-transform: uppercase; }
+
+/* ---------- hashtag in the navbar ---------- */
+/* phones (default): sits between the logo and the menu button; wraps to two lines on very small screens */
+.fp-tag { position: relative; flex: 1 1 auto; min-width: 0; text-align: center; opacity: 0; transform: translateY(-6px) scale(.96); pointer-events: none; user-select: none;
+    transition: opacity 1.2s ease, transform 1.2s var(--ease); }
+.fp-tag.in { opacity: 1; transform: none; }
+.fp-tag-wrap { position: relative; display: inline-block; padding: 2px 6px; }
+.fp-tag-text { display: inline-block; font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: clamp(12.5px, 3.7vw, 16px); line-height: 1.2; letter-spacing: .3px;
+    text-wrap: balance;
+    background: linear-gradient(90deg, var(--rose), var(--gold), #E6CB94, var(--gold), var(--rose)) 0 0 / 200% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 5s linear infinite; }
+.fp-tag-hi { font-family: 'Tiro Devanagari Hindi', serif; font-style: normal; font-weight: 400; }
+/* twinkling four-point stars around the text */
+.fp-star { position: absolute; width: 9px; height: 9px; color: var(--gold); background: currentColor; opacity: 0; pointer-events: none;
+    clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+    filter: drop-shadow(0 0 3px rgba(201,164,106,.8)); animation: twinkle 2.8s ease-in-out infinite; }
+.fp-star--1 { left: -4px;  top: -3px;    animation-delay: 0s; }
+.fp-star--2 { left: 26%;   top: -6px;    width: 7px; height: 7px; animation-delay: .9s; }
+.fp-star--3 { left: 58%;   bottom: -6px; width: 8px; height: 8px; animation-delay: 1.7s; }
+.fp-star--4 { right: 22%;  top: -6px;    width: 6px; height: 6px; animation-delay: .4s; }
+.fp-star--5 { right: -4px; bottom: -3px; animation-delay: 1.3s; }
+@keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.2) rotate(0deg); } 50% { opacity: 1; transform: scale(1) rotate(45deg); } }
+.fp-tag-wrap .fp-spark { z-index: 1; }
+@media (max-width: 419px) { .fp-tag-text { line-height: 1.15; } .fp-star--2, .fp-star--4 { display: none; } }
+/* tablets / small laptops: the links need the full row, so the hashtag gets its own centred row beneath */
+@media (min-width: 861px) and (max-width: 1179px) {
+    .fp-nav { flex-wrap: wrap; row-gap: 0; padding-bottom: 8px; }
+    .fp-tag { order: 3; flex: 0 0 100%; margin-top: -2px; }
+    .fp-tag-text { font-size: 18px; }
+    .final-page { scroll-padding-top: 104px; }
+}
+/* desktop: centred in the space between the logo and the links */
+@media (min-width: 1180px) { .fp-tag-text { font-size: 21px; } }
 
 /* ---------- responsive ---------- */
 /* navigation collapses into a menu button on phones and small tablets */

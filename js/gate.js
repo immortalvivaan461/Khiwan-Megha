@@ -50,6 +50,7 @@
             onComplete: () => {
                 gsap.set([gate, glow], { display: "none" });
                 document.querySelector(".invitation-screen").style.display = "none";
+                window.revealHashtag && window.revealHashtag();   // navbar hashtag appears once the curtains are gone
             }
         });
 

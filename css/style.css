@@ -311,19 +311,20 @@ body {
     bottom: 22px;
     z-index: 9999;
 
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+    height: 46px;
+    padding: 0 18px 0 14px;
+    border-radius: 999px;
 
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
 
     background: #fff9f3;
     color: #b77c83;
     border: 1px solid #c9a46a;
 
-    font-family: serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 25px;
 
     cursor: pointer;
@@ -337,6 +338,14 @@ body {
     color: #fff9f3;
 }
 
+.music-label {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
 .music-toggle.is-playing .music-icon {
     animation: musicPulse 1.5s ease-in-out infinite;
 }
@@ -348,9 +357,10 @@ body {
 
 @media (max-width: 600px) {
     .music-toggle {
-        width: 44px;
-        height: 44px;
+        height: 42px;
+        padding: 0 15px 0 12px;
         right: 16px;
         bottom: 16px;
     }
+    .music-label { font-size: 15px; }
 }

@@ -75,6 +75,8 @@ function openEnvelope() {
     if (isOpened) return;
     isOpened = true;
 
+    startWeddingMusic();   // the click is a visitor gesture, so the browser allows the music to start
+
     idleFloat && idleFloat.kill();
     idlePulse && idlePulse.kill();
     openButton.style.pointerEvents = "none";
@@ -136,19 +138,19 @@ function updateMusicButton() {
     );
 
     musicToggle.innerHTML = playing
-        ? '<span class="music-icon">♫</span>'
-        : '<span class="music-icon">♪</span>';
+        ? '<span class="music-icon">♫</span><span class="music-label">Pause</span>'
+        : '<span class="music-icon">♪</span><span class="music-label">Play</span>';
 }
 
-// Attempt autoplay on page load
+// Start the music (called when the envelope seal is clicked)
 async function startWeddingMusic() {
+    if (!music.paused) return;
     try {
         await music.play();
-        updateMusicButton();
     } catch (error) {
-        // Autoplay blocked by browser; wait for visitor interaction
-        updateMusicButton();
+        console.log("Music playback could not start.");
     }
+    updateMusicButton();
 }
 
 // Play / pause button
@@ -166,16 +168,7 @@ musicToggle.addEventListener("click", async () => {
     updateMusicButton();
 });
 
-// Start music on the first visitor interaction if autoplay was blocked
-["click", "touchstart", "keydown"].forEach(event => {
-    document.addEventListener(event, () => {
-        if (music.paused) {
-            startWeddingMusic();
-        }
-    }, { once: true });
-});
-
 music.addEventListener("play", updateMusicButton);
 music.addEventListener("pause", updateMusicButton);
 
-startWeddingMusic();
+updateMusicButton();   // show "Play" until the seal is clicked
