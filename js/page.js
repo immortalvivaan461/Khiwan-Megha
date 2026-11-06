@@ -247,7 +247,7 @@
 
     /* ---------- RSVP ---------- */
     // Set your WhatsApp number (country code, digits only, e.g. "919876543210") to receive replies.
-    const WHATSAPP_NUMBER = "";
+    const WHATSAPP_NUMBER = "917800879801";
     const form = document.getElementById("rsvpForm");
     const status = document.getElementById("rsvpStatus");
 
