@@ -245,7 +245,8 @@
         setActive(0);
     })();
 
-    /* ---------- RSVP ---------- */
+    /*
+    // ---------- RSVP ---------- //
     // Set your WhatsApp number (country code, digits only, e.g. "919876543210") to receive replies.
     const WHATSAPP_NUMBER = "917800879801";
     const form = document.getElementById("rsvpForm");
@@ -276,3 +277,65 @@
         form.reset();
     });
 })();
+*/
+
+/* ---------- GOOGLE SHEETS RSVP ---------- */
+
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzk9DSD804LxDF0vpXwjxOnU3Rxk3o_-JMki3PwjG0VDU9f_lQMzs6be1M5uzfxyoQ9Gg/exec";
+
+const form = document.getElementById("rsvpForm");
+const status = document.getElementById("rsvpStatus");
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const f = new FormData(form);
+
+    const name = (f.get("name") || "").trim();
+    const attending = f.get("attending");
+
+    if (!name || !attending) {
+        status.textContent =
+            "Please add your name and confirm your attendance.";
+        return;
+    }
+
+    const submitButton = form.querySelector(
+        'button[type="submit"]'
+    );
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending...";
+
+    const data = new URLSearchParams({
+        name: name,
+        phone: f.get("phone") || "",
+        guests: f.get("guests") || "1",
+        attending: attending,
+        message: f.get("message") || ""
+    });
+
+    try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            body: data
+        });
+
+        status.textContent = attending === "yes"
+            ? `Thank you, ${name}. We can't wait to celebrate with you!`
+            : `Thank you, ${name}. You will be missed.`;
+
+        form.reset();
+
+    } catch (error) {
+        console.error("RSVP submission error:", error);
+
+        status.textContent =
+            "Something went wrong. Please try again.";
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent =
+            "Kindly send your confirmation";
+    }
+});
