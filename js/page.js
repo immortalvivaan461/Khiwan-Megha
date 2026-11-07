@@ -284,7 +284,7 @@
 
 // ---------- GOOGLE SHEETS RSVP ---------- //
 
-const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbyAu4vld4YBxZQfBo5Tu7mS33M2Avj3X8AuL8bMIIA6HjZMqN7lKdR1LD3ljsPuFNu6/exec";
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbyoWNFAFPcS8rc64z9ps2_-TeLiNwDTNu9AY5q6FrvK9PFEcOyOpF6jU-1_iXqthIyQ/exec";
 
 const form = document.getElementById("rsvpForm");
 const status = document.getElementById("rsvpStatus");
