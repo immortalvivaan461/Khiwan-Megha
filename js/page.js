@@ -16,23 +16,23 @@
     window.matchMedia("(min-width: 861px)").addEventListener("change", e => { if (e.matches) setMenu(false); });
 
     /* ---------- Day tabs ---------- */
-    const tabs = [...document.querySelectorAll('.fp-tabs [role="tab"]')];
-    function selectTab(tab) {
-        tabs.forEach(t => {
-            const on = t === tab;
-            t.setAttribute("aria-selected", on);
-            t.tabIndex = on ? 0 : -1;
-            document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
-        });
-    }
-    tabs.forEach((t, i) => {
-        t.addEventListener("click", () => selectTab(t));
-        t.addEventListener("keydown", e => {
-            if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
-            const next = tabs[(i + (e.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length];
-            selectTab(next); next.focus();
-        });
-    });
+    // const tabs = [...document.querySelectorAll('.fp-tabs [role="tab"]')];
+    // function selectTab(tab) {
+    //     tabs.forEach(t => {
+    //         const on = t === tab;
+    //         t.setAttribute("aria-selected", on);
+    //         t.tabIndex = on ? 0 : -1;
+    //         document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    //     });
+    // }
+    // tabs.forEach((t, i) => {
+    //     t.addEventListener("click", () => selectTab(t));
+    //     t.addEventListener("keydown", e => {
+    //         if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    //         const next = tabs[(i + (e.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length];
+    //         selectTab(next); next.focus();
+    //     });
+    // });
 
     /* ---------- Scratch to reveal ---------- */
     const card = document.getElementById("scratchCard");
