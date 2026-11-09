@@ -92,8 +92,8 @@
     // Edit these details. Leave startTime empty for an all-day event, or set times like "10:00" / "23:00" (India time).
     const WEDDING = {
         title: "Khiwan & Megha's Wedding",
-        date: "2026-11-22",
-        startTime: "",
+        date: "2026-11-21",
+        startTime: "10:00",
         endTime: "",
         location: "The Grand Barso, Bharatpur, Rajasthan",
         description: "Join us to celebrate the wedding of Khiwan & Megha at The Grand Barso, Bharatpur, Rajasthan. " +
