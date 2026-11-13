@@ -188,6 +188,8 @@
 
 .fp-ev-kind { font-size: 14px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; opacity: .75; }
 .fp-ev-name { margin: 2px 0 14px; font-family: 'Great Vibes', cursive; font-weight: 400; font-size: clamp(40px, 10vw, 48px); line-height: 1.1; color: var(--rose); }
+
+.fp-ev-name1 { font-family: 'Birthstone', cursive !important; font-size: clamp(42px, 12vw, 49px); }
 /* two cards per row; a leftover last card (e.g. Day Two has 5) is centred instead of hanging on the left */
 @media (min-width: 720px) {
     .fp-events { display: flex; flex-wrap: wrap; justify-content: center; max-width: none; gap: 32px; }
